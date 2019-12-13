@@ -3,12 +3,12 @@ from BinaryTrees.BinarySearchTree import BinarySearchTree
 
 
 class LargestNode(object):
-    def kth_largest_node(self, node: Node, k: int, c: int) -> Node:
-        if not node or (c > k):
+    def kth_largest_node(self, node: Node, k: int, c: list) -> Node:
+        if not node or (c[0] >= k):
             return node
         self.kth_largest_node(node.right, k, c)
-        c += 1
-        if c == k:
+        c[0] += 1
+        if c[0] == k:
             print(node.data)
             return node
         self.kth_largest_node(node.left, k, c)
@@ -18,8 +18,8 @@ def main():
     node = Node(50)
     bst = BinarySearchTree()
     largest_node = LargestNode()
-    c = 0
-    k = 2
+    c = [0]
+    k = 4
     bst.insert(node, 30)
     bst.insert(node, 20)
     bst.insert(node, 40)
