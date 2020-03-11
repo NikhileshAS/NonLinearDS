@@ -19,7 +19,7 @@ class ConvertToDoublyLL(object):
         self.convert(root.right)
 
     @staticmethod
-    def print(head: TreeNode):
+    def print_values(head: TreeNode):
         while head is not None:
             print(head.data)
             head = head.right
@@ -27,15 +27,15 @@ class ConvertToDoublyLL(object):
 
 def main():
     bst = BinarySearchTree()
-    node = TreeNode(10)
-    bst.insert(node, 12)
-    bst.insert(node, 15)
-    bst.insert(node, 25)
-    bst.insert(node, 30)
-    bst.insert(node, 36)
+    node = TreeNode(7)
+    bst.insert(node, 4)
+    bst.insert(node, 11)
+    bst.insert(node, 2)
+    bst.insert(node, 6)
+    bst.insert(node, 9)
     convert_bst_to_dll = ConvertToDoublyLL()
     convert_bst_to_dll.convert(node)
-    convert_bst_to_dll.print(convert_bst_to_dll.head)
+    convert_bst_to_dll.print_values(convert_bst_to_dll.head.right)
 
 
 if __name__ == '__main__':

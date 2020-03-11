@@ -41,18 +41,33 @@ class BinarySearchTree(object):
         root.right = self.deserialize_helper(q)
         return root
 
+    def get_child_to_parent_mapping(self, relation: dict, node: Node) -> dict:
+        if node is None:
+            return
+        if node.left is not None:
+            relation[node.left] = node
+            self.get_child_to_parent_mapping(relation, node.left)
+        if node.right is not None:
+            relation[node.right] = node
+            self.get_child_to_parent_mapping(relation, node.right)
+        return relation
+
 
 if __name__ == '__main__':
-    node = Node(6)
+    node = Node(7)
     bst = BinarySearchTree()
-    bst.insert(node, 5)
-    bst.insert(node, 2)
-    bst.insert(node, 10)
+    bst.insert(node, 4)
     bst.insert(node, 11)
-    bst.insert(node, 17)
-    bst.insert(node, 1)
-    bst.insert(node, 0)
-    token = bst.serialize(node)
-    print(token)
-    bst.deserialize(token)
-    bst.print_tree(node)
+    bst.insert(node, 2)
+    bst.insert(node, 6)
+    bst.insert(node, 9)
+    # bst.insert(node, 1)
+    # bst.insert(node, 0)
+    # token = bst.serialize(node)
+    # print(token)
+    # bst.deserialize(token)
+    # bst.print_tree(node)
+    relation = {}
+    relation = bst.get_child_to_parent_mapping(relation, node)
+    for child in relation:
+        print(child.data, ' --> ', relation[child].data)
